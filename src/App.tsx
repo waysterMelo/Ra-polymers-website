@@ -13,7 +13,8 @@ import {
   ShieldCheck, 
   Cpu, 
   Settings, 
-  ChevronRight, 
+  ChevronRight,
+  ChevronLeft,
   MapPin, 
   Activity, 
   Layers, 
@@ -29,7 +30,8 @@ import logoAlcoa from './logo-alcoa.jpg';
 import logoRumo from './logo-rumo.png';
 import logoMrs from './logo-mrs.jpg';
 import logoMrn from './logo-mrn.jpg';
-import bgHome from './home.jpeg';
+import bgHome from './home.png';
+import imgRaPolymers from './rapolymers.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -202,12 +204,6 @@ const IndustrialMold = ({ progress }: { progress: number }) => {
           </mesh>
         ))}
 
-        {/* Center Core (with pronounced draft angle) */}
-        <mesh position={[2, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.2, 0.65, 4, 64]} />
-          {pinMaterial}
-        </mesh>
-
         {/* Ejector Pins (Grid around center) */}
         {[[-0.9, 0.9], [-0.9, -0.9], [0.9, 0.9], [0.9, -0.9], [0, 1.2], [0, -1.2], [1.2, 0], [-1.2, 0]].map(([y, z], i) => (
           <mesh key={`ejector-${i}`} position={[1.5, y, z]} rotation={[0, 0, Math.PI / 2]}>
@@ -276,11 +272,6 @@ const IndustrialMold = ({ progress }: { progress: number }) => {
           </mesh>
         ))}
 
-        {/* Center Cavity (with pronounced draft angle) */}
-        <mesh position={[-2.01, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.22, 0.67, 4.02, 64]} />
-          {cavityMaterial}
-        </mesh>
       </group>
 
       {/* RA Logo appearing on closure */}
@@ -399,14 +390,14 @@ export default function App() {
       if (moldPanelRef.current) {
         ScrollTrigger.create({
           trigger: moldPanelRef.current,
-          start: "left 60%",
-          end: "right 40%",
+          start: "left 30%", // Slightly earlier to feel more responsive
+          end: "right 70%",
           containerAnimation: scrollTween,
           onEnter: () => {
             gsap.to({ val: 0 }, {
               val: 1,
-              duration: 2.5,
-              ease: "power3.inOut",
+              duration: 3, // Reduced from 5s to 3s for better pacing
+              ease: "power2.inOut",
               onUpdate: function() {
                 setMoldProgress(this.targets()[0].val);
               }
@@ -425,8 +416,8 @@ export default function App() {
           onEnterBack: () => {
             gsap.to({ val: 0 }, {
               val: 1,
-              duration: 2.5,
-              ease: "power3.inOut",
+              duration: 3,
+              ease: "power2.inOut",
               onUpdate: function() {
                 setMoldProgress(this.targets()[0].val);
               }
@@ -462,18 +453,45 @@ export default function App() {
         />
       </div>
 
-      {/* Navigation Rail (Desktop Only) */}
+      {/* Navigation Arrow Left (Desktop Only) */}
+      {!isMobile && scrollProgress > 0 && (
+        <div 
+          className="fixed left-12 top-1/2 -translate-y-1/2 z-40 flex items-center justify-center cursor-pointer group transition-all duration-500"
+          onClick={() => {
+            if (containerRef.current) {
+              const currentScroll = window.scrollY;
+              window.scrollTo({
+                top: Math.max(0, currentScroll - window.innerHeight),
+                behavior: 'smooth'
+              });
+            }
+          }}
+        >
+          <div className="absolute w-12 h-12 bg-ra-blue/20 rounded-full scale-0 group-hover:scale-150 transition-transform duration-500 blur-md"></div>
+          <ChevronLeft size={48} className="text-ra-blue opacity-50 group-hover:opacity-100 transition-opacity" />
+        </div>
+      )}
+
+      {/* Navigation Arrow Right (Desktop Only) */}
       {!isMobile && (
-        <div className="fixed left-12 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-8">
-          {[0, 1, 2, 3, 4].map((i) => (
-            <div 
-              key={i}
-              className={cn(
-                "w-1 h-8 transition-all duration-500",
-                Math.floor(scrollProgress * 4.9) === i ? "bg-ra-blue h-12" : "bg-white/10"
-              )}
-            />
-          ))}
+        <div 
+          className="fixed right-12 top-1/2 -translate-y-1/2 z-40 flex items-center justify-center cursor-pointer group"
+          onClick={() => {
+            const currentIdx = Math.floor(scrollProgress * 4.9); // Approx calculation based on earlier code
+            const totalPanels = 5; // 0 to 4 is 5 panels, plus the 1.5 is 6 total panels, wait let's use the container width
+            if (containerRef.current) {
+              const panelWidth = window.innerWidth;
+              const currentScroll = window.scrollY;
+              // If we are using scrollTrigger with pin, scrolling down moves it right.
+              window.scrollTo({
+                top: currentScroll + window.innerHeight,
+                behavior: 'smooth'
+              });
+            }
+          }}
+        >
+          <div className="absolute w-12 h-12 bg-ra-blue/20 rounded-full scale-0 group-hover:scale-150 transition-transform duration-500 blur-md"></div>
+          <ChevronRight size={48} className="text-ra-blue opacity-50 group-hover:opacity-100 transition-opacity animate-pulse group-hover:animate-none" />
         </div>
       )}
 
@@ -506,8 +524,8 @@ export default function App() {
               Ra <span className="text-ra-blue">polymers</span>
             </h1>
             
-            <p className="text-sm md:text-lg font-light tracking-[0.5em] text-white/60 uppercase max-w-2xl">
-              Inovação em Polímeros e Ferramentaria Própria
+            <p className="text-sm md:text-lg font-light tracking-[0.3em] text-white/60 uppercase max-w-3xl">
+              Soluções Avançadas em Polímeros e Engenharia de Alta Precisão para o Setor Industrial
             </p>
           </div>
           
@@ -517,45 +535,169 @@ export default function App() {
           </div>
         </section>
 
-        {/* PANEL 2: CLIENTS */}
-        <section className="panel bg-ra-dark/50">
-          <PanelHeader number="02" title="Nossos Clientes" />
+        {/* PANEL 1.5: SOBRE NÓS (COMMAND CENTER REINVENTION) */}
+        <section className="panel bg-ra-dark overflow-hidden relative">
+          <PanelHeader number="01.5" title="Centro de Operações" />
           
-          <div className="h-full flex flex-col items-center justify-center px-12">
-            <div className="max-w-6xl w-full">
-              <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4">
-                  Parcerias de <span className="text-ra-blue">Valor</span>
-                </h2>
-                <p className="text-white/40 text-sm tracking-[0.2em] uppercase">Empresas que confiam na nossa precisão industrial</p>
+          <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+            {/* Tech Grid Background */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_10%,transparent_100%)]"></div>
+            {/* Massive Watermark */}
+            <div className="absolute text-[20vw] font-black text-white/[0.02] tracking-tighter uppercase select-none whitespace-nowrap">
+              Polymers
+            </div>
+          </div>
+
+          <div className="h-full flex items-center justify-center relative z-10 w-full px-6 md:px-12">
+            <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+              
+              {/* Left Column: Data & Specs */}
+              <div className="hidden lg:flex flex-col gap-6">
+                <div className="glass-panel p-6 border-l-4 border-ra-blue group hover:bg-white/5 transition-colors">
+                  <div className="flex justify-between items-end mb-4">
+                    <h3 className="text-xs uppercase tracking-[0.2em] text-white/50 group-hover:text-ra-blue transition-colors">Precisão Estrutural</h3>
+                    <span className="text-ra-blue font-mono text-sm">99.9%</span>
+                  </div>
+                  <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                    <div className="h-full bg-ra-blue w-[99.9%] relative">
+                      <div className="absolute top-0 right-0 w-4 h-full bg-white/50 blur-[2px] animate-pulse"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="glass-panel p-8 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 p-4 opacity-5">
+                    <Activity size={100} />
+                  </div>
+                  <h3 className="text-2xl font-black uppercase tracking-widest text-white mb-4">Nosso <span className="text-ra-blue">DNA</span></h3>
+                  <p className="text-sm text-white/60 leading-relaxed font-light">
+                    Não somos apenas uma indústria; somos um laboratório de alta performance. Desenvolvemos soluções em polímeros que desafiam os limites da engenharia, fundindo ciência dos materiais com usinagem de precisão nanométrica.
+                  </p>
+                </div>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center">
-                {[
-                  { name: "VALE", logo: logoVale, fallback: "https://upload.wikimedia.org/wikipedia/en/thumb/5/5e/Vale_logo.svg/1200px-Vale_logo.svg.png" },
-                  { name: "ALCOA", logo: logoAlcoa, fallback: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Alcoa_logo.svg/1200px-Alcoa_logo.svg.png" },
-                  { name: "RUMO", logo: logoRumo, fallback: "https://upload.wikimedia.org/wikipedia/pt/thumb/a/a4/Logo_Rumo_Log%C3%ADstica.png/250px-Logo_Rumo_Log%C3%ADstica.png" },
-                  { name: "MRS", logo: logoMrs, fallback: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/MRS_Logistica_logo.svg/1200px-MRS_Logistica_logo.svg.png" },
-                  { name: "MRN", logo: logoMrn, fallback: "https://www.mrn.com.br/static/media/logo-mrn.6b4b1b3b.png" }
-                ].map((client, i) => (
-                  <div key={i} className="group glass-panel p-8 flex flex-col items-center justify-center gap-4 hover:bg-white/5 transition-all duration-500 border-white/5 h-48">
-                    <div className="h-16 w-full flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-700">
-                      <img 
-                        src={client.logo} 
-                        alt={client.name} 
-                        className="max-h-full max-w-full object-contain"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          if (target.src.includes(client.fallback) || target.src.includes('placehold.co')) {
-                            target.src = `https://placehold.co/200x100/1a1d23/0066ff?text=${client.name}`;
-                          } else {
-                            target.src = client.fallback;
-                          }
-                        }}
-                        referrerPolicy="no-referrer"
-                      />
+              {/* Center Column: The Core */}
+              <div className="flex justify-center items-center relative h-[400px] md:h-[600px]">
+                {/* HUD Elements */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-[300px] h-[300px] md:w-[450px] md:h-[450px] border border-ra-blue/20 rounded-full animate-[spin_40s_linear_infinite] relative">
+                    {/* Tick marks on the ring */}
+                    {Array.from({ length: 12 }).map((_, i) => (
+                      <div key={i} className="absolute top-0 left-1/2 w-[1px] h-3 bg-ra-blue/50 -translate-x-1/2" style={{ transformOrigin: `50% ${isMobile ? '150px' : '225px'}`, transform: `rotate(${i * 30}deg)` }}></div>
+                    ))}
+                  </div>
+                  <div className="absolute w-[250px] h-[250px] md:w-[380px] md:h-[380px] border border-white/10 border-dashed rounded-full animate-[spin_30s_linear_infinite_reverse]"></div>
+                </div>
+                
+                {/* Core Image */}
+                <div className="relative z-20 group">
+                  <div className="absolute inset-0 bg-ra-blue/20 blur-3xl rounded-full scale-150 opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
+                  <img 
+                    src={imgRaPolymers} 
+                    alt="RA Polymers Core" 
+                    className="w-[200px] md:w-[280px] object-contain relative z-10 drop-shadow-[0_0_50px_rgba(0,102,255,0.6)]" 
+                  />
+                  <div className="absolute bottom-[-40px] left-1/2 -translate-x-1/2 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-ra-blue animate-pulse"></span>
+                    <span className="text-[9px] font-mono tracking-widest text-ra-blue">SYSTEM_ONLINE</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Mission & Telemetry */}
+              <div className="hidden lg:flex flex-col gap-6">
+                <div className="glass-panel p-8 relative overflow-hidden">
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-ra-blue to-transparent opacity-50"></div>
+                  <h3 className="text-2xl font-black uppercase tracking-widest text-white mb-4">A <span className="text-ra-blue">Missão</span></h3>
+                  <p className="text-sm text-white/60 leading-relaxed font-light">
+                    Elevar o padrão global de manufatura. Entregamos matrizes e compostos poliméricos que garantem ciclos ininterruptos, minimizando setups e maximizando o retorno sobre o investimento industrial.
+                  </p>
+                </div>
+
+                <div className="glass-panel p-6 border-r-4 border-white/20">
+                  <div className="flex flex-col gap-3 font-mono text-[10px] text-white/40 tracking-widest">
+                    <div className="flex justify-between border-b border-white/5 pb-2">
+                      <span>CAPACIDADE DE PRODUÇÃO</span>
+                      <span className="text-white/80">ALTA ESCALA</span>
                     </div>
-                    <span className="text-[10px] font-mono tracking-widest text-white/20 group-hover:text-ra-blue transition-colors">{client.name}</span>
+                    <div className="flex justify-between border-b border-white/5 pb-2">
+                      <span>CONTROLE DE QUALIDADE</span>
+                      <span className="text-white/80">AUTOMATIZADO</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>TEMPO DE RESPOSTA</span>
+                      <span className="text-white/80">IMEDIATO</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* PANEL 2: CLIENTS (REINVENTED) */}
+        <section className="panel bg-ra-dark/50 relative overflow-hidden">
+          <PanelHeader number="02" title="Nossos Clientes" />
+          
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--color-ra-blue)_0%,_transparent_20%)] opacity-5 mix-blend-screen scale-[2] pointer-events-none"></div>
+
+          <div className="h-full flex flex-col items-center justify-center px-12 relative z-10">
+            <div className="text-center mb-24">
+              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4">
+                Rede de <span className="text-ra-blue">Confiança</span>
+              </h2>
+              <p className="text-white/40 text-sm tracking-[0.2em] uppercase">Ecossistema Industrial de Alta Performance</p>
+            </div>
+
+            <div className="w-full max-w-7xl relative">
+              {/* Central horizontal line to connect nodes */}
+              <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-ra-blue/50 to-transparent -translate-y-1/2 hidden md:block"></div>
+
+              <div className="flex flex-wrap md:flex-nowrap justify-center items-center gap-8 md:gap-16">
+                {[
+                  { name: "VALE", logo: logoVale, fallback: "https://upload.wikimedia.org/wikipedia/en/thumb/5/5e/Vale_logo.svg/1200px-Vale_logo.svg.png", delay: 0 },
+                  { name: "ALCOA", logo: logoAlcoa, fallback: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Alcoa_logo.svg/1200px-Alcoa_logo.svg.png", delay: 100 },
+                  { name: "RUMO", logo: logoRumo, fallback: "https://upload.wikimedia.org/wikipedia/pt/thumb/a/a4/Logo_Rumo_Log%C3%ADstica.png/250px-Logo_Rumo_Log%C3%ADstica.png", delay: 200 },
+                  { name: "MRS", logo: logoMrs, fallback: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/MRS_Logistica_logo.svg/1200px-MRS_Logistica_logo.svg.png", delay: 300 },
+                  { name: "MRN", logo: logoMrn, fallback: "https://www.mrn.com.br/static/media/logo-mrn.6b4b1b3b.png", delay: 400 }
+                ].map((client, i) => (
+                  <div 
+                    key={i} 
+                    className="relative group cursor-none"
+                    style={{
+                      transform: `translateY(${i % 2 === 0 ? '-20px' : '20px'})`
+                    }}
+                  >
+                    {/* Node Connection Point */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-ra-dark border-2 border-ra-blue rounded-full z-0 hidden md:block group-hover:scale-150 transition-transform duration-500"></div>
+                    
+                    {/* Magnetic Card */}
+                    <div className="glass-panel w-40 h-40 md:w-48 md:h-48 rounded-full flex flex-col items-center justify-center relative z-10 
+                                  hover:scale-110 hover:-translate-y-4 hover:border-ra-blue/50 hover:bg-white/10 transition-all duration-500 overflow-hidden">
+                      <div className="absolute inset-0 bg-ra-blue/0 group-hover:bg-ra-blue/10 transition-colors duration-500"></div>
+                      
+                      <div className="w-24 h-24 flex items-center justify-center grayscale group-hover:grayscale-0 opacity-50 group-hover:opacity-100 transition-all duration-700 relative z-20">
+                        <img 
+                          src={client.logo} 
+                          alt={client.name} 
+                          className="max-h-full max-w-full object-contain mix-blend-screen"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            if (target.src.includes(client.fallback) || target.src.includes('placehold.co')) {
+                              target.src = `https://placehold.co/200x100/1a1d23/0066ff?text=${client.name}`;
+                            } else {
+                              target.src = client.fallback;
+                            }
+                          }}
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
+                      
+                      <span className="absolute bottom-6 text-[10px] font-mono tracking-[0.3em] text-ra-blue opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 z-20">
+                        {client.name}
+                      </span>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -580,29 +722,45 @@ export default function App() {
             </Canvas>
           </div>
 
-          <div className="absolute bottom-24 left-12 md:left-24 z-10 max-w-md">
-            <TechBadge icon={Settings}>High Precision Engineering</TechBadge>
-            <h2 className="text-3xl md:text-5xl font-bold mt-6 mb-4 leading-tight">
-              Domínio total <br /> do projeto.
-            </h2>
-            <p className="text-white/50 text-sm leading-relaxed">
-              Da concepção do molde à produção final. Nossa ferramentaria própria garante que cada milímetro seja respeitado, eliminando falhas de terceiros.
-            </p>
-          </div>
-
-          {/* Technical Overlay */}
-          <div className="absolute top-1/2 right-12 -translate-y-1/2 hidden lg:flex flex-col gap-4">
-            {[
-              { label: "TOLERANCE", value: "0.001mm" },
-              { label: "MATERIAL", value: "P20 STEEL" },
-              { label: "PRESSURE", value: "2500 BAR" },
-              { label: "CYCLE", value: "12.4s" }
-            ].map((stat, i) => (
-              <div key={i} className="glass-panel p-4 w-48 border-l-2 border-l-ra-blue">
-                <p className="text-[9px] text-white/40 tracking-widest mb-1">{stat.label}</p>
-                <p className="text-lg font-mono text-ra-blue">{stat.value}</p>
+          {/* Central Animated Text Panels (Replaces the static side panels and bottom text) */}
+          <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+            {/* Left Panel */}
+            <div 
+              className="absolute top-1/2 left-0 -translate-y-1/2 flex flex-col justify-center px-12 md:px-24 transition-all duration-[1500ms] ease-out w-full md:w-1/2 h-full"
+              style={{ 
+                opacity: moldProgress > 0.8 ? 1 : 0,
+                transform: `translateX(${moldProgress > 0.8 ? '0%' : '-50%'})`
+              }}
+            >
+              <div className="max-w-md">
+                <TechBadge icon={Settings}>Zero Tolerância</TechBadge>
+                <h2 className="text-4xl md:text-6xl font-black mt-6 mb-4 leading-none uppercase tracking-tighter text-white drop-shadow-2xl">
+                  Domínio <br /> <span className="text-ra-blue">Absoluto</span>
+                </h2>
+                <p className="text-white/70 text-lg leading-relaxed font-light backdrop-blur-sm bg-ra-dark/30 p-4 rounded-xl border-l-2 border-ra-blue">
+                  Da concepção à injeção final. Elimine falhas de terceiros com nossa ferramentaria proprietária focada em maximizar o seu lucro por ciclo.
+                </p>
               </div>
-            ))}
+            </div>
+
+            {/* Right Panel */}
+            <div 
+              className="absolute top-1/2 right-0 -translate-y-1/2 flex flex-col justify-center items-end px-12 md:px-24 transition-all duration-[1500ms] ease-out w-full md:w-1/2 h-full text-right"
+              style={{ 
+                opacity: moldProgress > 0.8 ? 1 : 0,
+                transform: `translateX(${moldProgress > 0.8 ? '0%' : '50%'})`
+              }}
+            >
+              <div className="max-w-md">
+                <TechBadge icon={Cpu}>Alta Performance</TechBadge>
+                <h2 className="text-4xl md:text-6xl font-black mt-6 mb-4 leading-none uppercase tracking-tighter text-white drop-shadow-2xl">
+                  Ciclos <br /> <span className="text-ra-blue">Extremos</span>
+                </h2>
+                <p className="text-white/70 text-lg leading-relaxed font-light backdrop-blur-sm bg-ra-dark/30 p-4 rounded-xl border-r-2 border-ra-blue inline-block">
+                  Otimização térmica e usinagem CNC submilimétrica. Moldes projetados para rodar milhões de ciclos ininterruptos com precisão nanométrica.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
