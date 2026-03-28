@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -47,7 +47,8 @@
 
 .horizontal-scroll-container {
   display: flex;
-  width: 400vw;
+  flex-wrap: nowrap;
+  width: auto;
   height: 100vh;
 }
 
@@ -71,13 +72,14 @@
   width: 100vw;
   height: 100vh;
   flex-shrink: 0;
+  will-change: transform;
   position: relative;
   overflow: hidden;
 }
 
 @media (max-width: 768px) {
   .panel {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
   }
 }
@@ -91,3 +93,131 @@
 .glow-text {
   text-shadow: 0 0 10px var(--color-ra-blue);
 }
+
+/* --- INDUSTRIAL HUD & SCANNER STYLES --- */
+
+.industrial-bg-grid {
+  background-image: 
+    linear-gradient(to right, rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.vignette-overlay {
+  background: radial-gradient(circle at right center, transparent 0%, rgba(2, 6, 23, 0.98) 100%);
+}
+
+.glass-panel-hud {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  border-radius: 4px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+}
+
+.section-tag-hud {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-ra-blue);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-tag-hud::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--color-ra-blue);
+}
+
+.scan-area-hud {
+  position: absolute;
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  border: 1px solid rgba(59, 130, 246, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.scanner-line-hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+  box-shadow: 0 0 15px #3b82f6;
+  z-index: 20;
+  animation: scan-move 4s ease-in-out infinite;
+}
+
+.scanner-glow-hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to bottom, rgba(59, 130, 246, 0.1), transparent);
+  animation: scan-move-glow 4s ease-in-out infinite;
+  z-index: 15;
+}
+
+@keyframes scan-move {
+  0% { top: 0%; }
+  50% { top: 100%; }
+  100% { top: 0%; }
+}
+
+@keyframes scan-move-glow {
+  0% { top: -100px; transform: scaleY(1); }
+  50% { top: 100%; transform: scaleY(-1); }
+  100% { top: -100px; transform: scaleY(1); }
+}
+
+.frame-corner-hud {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: #3b82f6;
+  opacity: 0.4;
+}
+.f-tl-hud { top: -1px; left: -1px; border-top: 2px solid; border-left: 2px solid; }
+.f-tr-hud { top: -1px; right: -1px; border-top: 2px solid; border-right: 2px solid; }
+.f-bl-hud { bottom: -1px; left: -1px; border-bottom: 2px solid; border-left: 2px solid; }
+.f-br-hud { bottom: -1px; right: -1px; border-bottom: 2px solid; border-right: 2px solid; }
+
+.logo-core-hud {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  z-index: 10;
+  background: rgba(2, 6, 23, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 40px 60px;
+  border-radius: 2px;
+}
+
+.circle-sm-hud {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #3b82f6;
+  border-radius: 50%;
+}
+
+.circle-lg-hud {
+  width: 40px;
+  height: 40px;
+  background: #3b82f6;
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+}
+
+.text-scroll-hud::-webkit-scrollbar { width: 4px; }
+.text-scroll-hud::-webkit-scrollbar-track { background: transparent; }
+.text-scroll-hud::-webkit-scrollbar-thumb { background: rgba(59, 130, 246, 0.2); }
