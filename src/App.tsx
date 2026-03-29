@@ -82,12 +82,12 @@ export default function App() {
     };
   }, [isMobile]);
 
-  // GSAP Scroll Animation - Refined with Fade
+  // GSAP Scroll Animation
   useEffect(() => {
     if (isMobile || !containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      const sections = gsap.utils.toArray('.panel') as HTMLElement[];
+      const sections = gsap.utils.toArray('.panel');
       
       const scrollTween = gsap.to(sections, {
         xPercent: -100 * (sections.length - 1),
@@ -95,7 +95,7 @@ export default function App() {
         scrollTrigger: {
           trigger: containerRef.current,
           pin: true,
-          scrub: 1, // Increased scrub for a smoother, slightly delayed feel
+          scrub: 0.5, // Smoother response
           snap: {
             snapTo: 1 / (sections.length - 1),
             duration: { min: 0.2, max: 0.6 },
@@ -110,52 +110,16 @@ export default function App() {
         }
       });
 
-      // Add a subtle fade transition to each section
-      sections.forEach(section => {
-        gsap.to(section, {
-          opacity: 0, // Start almost invisible
-          scrollTrigger: {
-            trigger: section,
-            containerAnimation: scrollTween,
-            start: "left 90%", // Start fading in when it's 90% to the left of the viewport
-            end: "left 60%",   // Fully visible when it reaches 60%
-            scrub: true,
-            onToggle: self => {
-              // Ensure the panel is fully opaque when active
-              if (self.isActive) {
-                gsap.to(section, { opacity: 1, duration: 0.3 });
-              }
-            }
-          }
-        });
-        gsap.to(section, {
-          opacity: 0, // Start fading out
-          scrollTrigger: {
-            trigger: section,
-            containerAnimation: scrollTween,
-            start: "right 40%", // Start fading out when its right edge passes 40%
-            end: "right 10%",   // Fully faded when it's almost off-screen
-            scrub: true,
-          }
-        });
-      });
-      
-      // Initial state fix for the first panel
-      if (sections[0]) {
-        gsap.set(sections[0], { opacity: 1 });
-      }
-
-      // Maintain connection for Mold Section 3D Animation
       if (moldPanelRef.current) {
         ScrollTrigger.create({
           trigger: moldPanelRef.current,
-          containerAnimation: scrollTween,
-          start: "left 80%",
+          start: "left 80%", // Start earlier
           end: "right 20%",
+          containerAnimation: scrollTween,
           onEnter: () => {
             gsap.to({ val: 0 }, {
               val: 1,
-              duration: 1.8,
+              duration: 1.8, // Even slower for dramatic appreciation
               ease: "power2.inOut",
               onUpdate: function() {
                 setMoldProgress(this.targets()[0].val);
