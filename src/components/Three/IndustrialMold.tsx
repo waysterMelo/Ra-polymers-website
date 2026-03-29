@@ -280,23 +280,6 @@ export const IndustrialMold: React.FC<IndustrialMoldProps> = ({ progress }) => {
         intensity={0}
         distance={10}
       />
-
-      {/* Esfera de fundo — pausada quando progress = 0 para economizar GPU */}
-      {progress > 0 && (
-        <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-          <mesh position={[0, 0, -2]} scale={1.5}>
-            <sphereGeometry args={[1, 32, 32]} />
-            <MeshDistortMaterial
-              color="#0066ff"
-              speed={2}
-              distort={0.3}
-              radius={1}
-              opacity={0.1}
-              transparent
-            />
-          </mesh>
-        </Float>
-      )}
     </group>
   );
 };
