@@ -23,6 +23,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const homePanelRef = useRef<HTMLElement>(null);
   const moldPanelRef = useRef<HTMLElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -95,7 +96,7 @@ export default function App() {
         scrollTrigger: {
           trigger: containerRef.current,
           pin: true,
-          scrub: 0.5, // Smoother response
+          scrub: 0.5,
           snap: {
             snapTo: 1 / (sections.length - 1),
             duration: { min: 0.2, max: 0.6 },
@@ -110,17 +111,37 @@ export default function App() {
         }
       });
 
+      // Transição cinematográfica da Home → segunda seção
+      if (homePanelRef.current) {
+        const homeContent = homePanelRef.current.querySelector('.home-content');
+        if (homeContent) {
+          gsap.to(homeContent, {
+            opacity: 0,
+            scale: 0.92,
+            filter: 'blur(8px)',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: homePanelRef.current,
+              start: 'left left',
+              end: 'right left',
+              containerAnimation: scrollTween,
+              scrub: true,
+            }
+          });
+        }
+      }
+
+      // Mold Section Animation
       if (moldPanelRef.current) {
         ScrollTrigger.create({
           trigger: moldPanelRef.current,
-          start: "left center",  // Inicia animação quando o lado esquerdo do painel chega ao centro
-          end: "+=500",          // Scroll adicional para atuar em eventuais recálculos
+          start: "left center",
+          end: "+=500",
           containerAnimation: scrollTween,
           onEnter: () => {
-            // Animação inicia assim que entra (sem atraso) de forma orgânica e mais lenta
             gsap.to({ val: 0 }, {
               val: 1,
-              duration: 5,  // 5 segundos para fechar bem devagar e aproveitar o momento
+              duration: 5,
               ease: "power2.inOut",
               onUpdate: function() {
                 setMoldProgress(this.targets()[0].val);
@@ -128,7 +149,6 @@ export default function App() {
             });
           },
           onLeaveBack: () => {
-            // Voltou para seção anterior - reseta o molde
             gsap.to({ val: 1 }, {
               val: 0,
               duration: 2,
@@ -163,7 +183,7 @@ export default function App() {
       />
 
       <main ref={containerRef} className={cn(isMobile ? "flex flex-col" : "horizontal-scroll-container")}>
-        <Home />
+        <Home ref={homePanelRef} />
         <RaPolymersOverview />
         <Clients />
         <MoldSection 

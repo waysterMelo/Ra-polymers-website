@@ -59,25 +59,54 @@
   }
 }
 
-/* --- TEMA CLARO --- */
+/* ===========================
+   CLIENTS SECTION — PREMIUM
+   =========================== */
 
-.client-card-container {
-    perspective: 2000px;
+/* Card wrapper — 3D perspective */
+.cl-card-wrapper {
+    perspective: 1000px;
 }
 
-.client-card {
+/* Card base */
+.cl-card {
     background: white;
-    border-radius: 24px;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    transform-style: preserve-3d;
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 0 4px 20px -10px rgba(0,0,0,0.05);
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.04),
+        0 4px 12px rgba(0, 0, 0, 0.03);
     position: relative;
     overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d;
 }
 
-.client-card::after {
-    content: "";
+.cl-card:hover {
+    transform: translateY(-8px) rotateX(4deg);
+    border-color: rgba(15, 74, 138, 0.2);
+    box-shadow:
+        0 20px 40px -12px rgba(15, 74, 138, 0.12),
+        0 8px 16px -4px rgba(0, 0, 0, 0.06);
+}
+
+/* Featured card */
+.cl-card--featured {
+    border-color: rgba(15, 74, 138, 0.15);
+    background: linear-gradient(160deg, white 60%, rgba(15, 74, 138, 0.04) 100%);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.04),
+        0 4px 20px -6px rgba(15, 74, 138, 0.1);
+}
+
+.cl-card--featured:hover {
+    border-color: rgba(15, 74, 138, 0.35);
+    box-shadow:
+        0 20px 50px -12px rgba(15, 74, 138, 0.2),
+        0 8px 16px -4px rgba(0, 0, 0, 0.06);
+}
+
+/* Shine sweep */
+.cl-shine {
     position: absolute;
     top: -50%;
     left: -50%;
@@ -86,54 +115,129 @@
     background: linear-gradient(
         45deg,
         transparent,
-        rgba(255, 255, 255, 0) 40%,
-        rgba(255, 255, 255, 0.4) 50%,
-        rgba(255, 255, 255, 0) 60%,
+        rgba(255, 255, 255, 0) 35%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0) 65%,
         transparent
     );
     transform: rotate(-45deg) translateX(-100%);
-    transition: transform 0.8s ease;
+    transition: transform 0.7s ease;
     pointer-events: none;
+    z-index: 5;
 }
 
-.client-card:hover {
-    transform: rotateX(10deg) rotateY(-10deg) translateZ(20px);
-    box-shadow: 20px 30px 60px -15px rgba(0, 0, 0, 0.1);
-    border-color: rgba(14, 165, 233, 0.4);
-    animation: float 4s ease-in-out infinite;
-}
-
-.client-card:hover::after {
+.cl-card:hover .cl-shine {
     transform: rotate(-45deg) translateX(100%);
 }
 
-.client-logo-wrapper {
-    transform: translateZ(40px);
-    filter: grayscale(100%);
-    opacity: 0.4;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+/* ===========================
+   HOME PAGE — PREMIUM STYLES
+   =========================== */
+
+/* Background slow zoom — cinematic feel */
+.home-bg-zoom {
+    animation: homeZoom 25s ease-in-out infinite alternate;
+    transform-origin: center center;
 }
 
-.client-card:hover .client-logo-wrapper {
-    filter: grayscale(0%) drop-shadow(0 10px 10px rgba(0,0,0,0.08));
-    opacity: 1;
-    transform: translateZ(60px) scale(1.1);
+@keyframes homeZoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.08); }
 }
 
-.client-name {
-    transform: translateZ(20px);
-    transition: all 0.5s ease;
-    opacity: 0.5;
+/* Radial vignette — dark edges, lighter center */
+.home-vignette {
+    background: radial-gradient(
+        ellipse at center,
+        transparent 30%,
+        rgba(2, 6, 23, 0.4) 70%,
+        rgba(2, 6, 23, 0.85) 100%
+    );
 }
 
-.client-card:hover .client-name {
-    transform: translateZ(40px);
-    opacity: 1;
-    color: #0f172a;
+/* Glassmorphism card — premium dark glass */
+.home-glass-card {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    position: relative;
+    overflow: hidden;
 }
 
-@keyframes float {
-    0% { transform: rotateX(10deg) rotateY(-10deg) translateZ(20px) translateY(0); }
-    50% { transform: rotateX(10deg) rotateY(-10deg) translateZ(20px) translateY(-8px); }
-    100% { transform: rotateX(10deg) rotateY(-10deg) translateZ(20px) translateY(0); }
+/* Subtle top-edge shine on glass card */
+.home-glass-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4) 30%,
+        rgba(255, 255, 255, 0.6) 50%,
+        rgba(255, 255, 255, 0.4) 70%,
+        transparent
+    );
 }
+
+/* Title gradient — white to blue */
+.home-title-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #93c5fd 40%, #0f4a8a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Logo glow effect */
+.home-logo-glow {
+    animation: logoGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+    0% { box-shadow: 0 0 20px rgba(15, 74, 138, 0.0); }
+    100% { box-shadow: 0 0 30px rgba(15, 74, 138, 0.25), 0 0 60px rgba(15, 74, 138, 0.1); }
+}
+
+/* Staggered fade-up entry animations */
+.home-fade-up {
+    animation: homeFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+.home-fade-up-delay-1 {
+    animation: homeFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    opacity: 0;
+}
+
+.home-fade-up-delay-2 {
+    animation: homeFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+    opacity: 0;
+}
+
+.home-fade-up-delay-3 {
+    animation: homeFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+    opacity: 0;
+}
+
+@keyframes homeFadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Home content — GPU-accelerated for GSAP transition */
+.home-content {
+    will-change: transform, opacity, filter;
+}
+
