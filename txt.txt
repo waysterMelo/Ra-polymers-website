@@ -1,1 +1,2 @@
-depois dessas atualizacoes na secao de ferramentaria a pagina nao abre mais, nao aparece nada
+1. o sistema de orbita em nossos clientes deve rodar lentamente, o nome da empresa deve aparecer no centro de seu respectivo circulo, 
+no codigo atual é um circulo normal, precisamos enriquecer os detalhes.

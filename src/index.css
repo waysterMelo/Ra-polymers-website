@@ -242,6 +242,24 @@
   100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
 }
 
+@keyframes orbit-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes counter-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+.animate-orbit {
+  animation: orbit-rotate 60s linear infinite;
+}
+
+.animate-counter-orbit {
+  animation: counter-rotate 60s linear infinite;
+}
+
 .text-scroll-hud::-webkit-scrollbar { width: 4px; }
 .text-scroll-hud::-webkit-scrollbar-track { background: transparent; }
 .text-scroll-hud::-webkit-scrollbar-thumb { background: rgba(59, 130, 246, 0.2); }
