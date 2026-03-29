@@ -38,7 +38,7 @@ export const Engineering: React.FC = () => {
           <div className="flex flex-col gap-8 text-center items-center">
             <TechBadge icon={Activity}>Superior Manufacturing</TechBadge>
             
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">
+            <h2 className="font-display text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">
               Poder de <br /> <span className="text-ra-blue">Execução</span>
             </h2>
             
@@ -73,7 +73,7 @@ export const Engineering: React.FC = () => {
                 <img 
                   src={imgRomi} 
                   alt="ROMI Precision Machine B" 
-                  className="w-full max-w-[400px] object-cover rounded-lg grayscale group-hover:grayscale-0 transition-all duration-700" 
+                  className="w-full max-w-[400px] object-cover rounded-lg grayscale group-hover:grayscale-0 transition-all duration-700 scale-x-[-1]" 
                 />
               </div>
               <div className="absolute -bottom-4 -right-4 font-mono text-[10px] text-ra-blue bg-ra-dark/80 px-3 py-1 border border-ra-blue/20">

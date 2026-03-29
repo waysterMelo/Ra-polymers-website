@@ -26,7 +26,7 @@ export const Home: React.FC = () => {
           </div>
         </div>
         
-        <h1 className="text-5xl md:text-8xl font-black tracking-tighter uppercase mb-4">
+        <h1 className="font-display text-5xl md:text-8xl font-black tracking-tighter uppercase mb-4">
           Ra <span className="text-ra-blue">polymers</span>
         </h1>
         

@@ -1,15 +1,1 @@
-1. em Engenharia de
-Materiais 4.0 coloque o texto -> A RA Polymers opera no nexo entre a ciência de materiais avançados e a manufatura algorítmica. Desenvolvemos ecossistemas poliméricos de alto desempenho, desenhados para suportar pressões críticas em setores onde a falha não é uma opção: Aeroespacial, Med-Tech e Defesa.
-
-Através de moldagem por injeção assistida por Inteligência Artificial e laboratórios de metrologia próprios, asseguramos que cada componente entregue responda a arquiteturas moleculares proprietárias e patentes de precisão absoluta.
-
-Mais do que fornecedores, somos a espinha dorsal da vossa eficiência. Colaboramos diretamente com unidades de P&D globais para otimizar o custo operacional (TCO) e garantir a sustentabilidade através da longevidade extrema de cada componente produzido.
-
-e Trajetória Científica coloque Da Prototipagem à Escala Global
-Nascida sob o rigor do método científico, a RA Polymers evoluiu de uma manufatura de nicho para um centro de operações industriais de alta escala. O nosso percurso é marcado pela transição do fornecimento reativo para a engenharia preditiva, consolidando parcerias estratégicas baseadas em segurança, inovação e excelência técnica inegociável.
-
-
-2. na secao engenharia e perfomance sera uma pagina dedicada por mostrar em 3 colunas o uso do equipamento pela empresa na coluna central um texto , e nas duas imagens em 3d das maquinas romi imagem romi.jpg
-
-3. crie uma pasta para as imagens.
-
+depois dessas atualizacoes na secao de ferramentaria a pagina nao abre mais, nao aparece nada

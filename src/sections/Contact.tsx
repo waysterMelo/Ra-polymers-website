@@ -15,7 +15,7 @@ export const Contact: React.FC = () => {
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-ra-blue">Sigilo Total (NDA)</span>
             </div>
             
-            <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8">
+            <h2 className="font-display text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 text-white">
               Seu projeto <br /> em <span className="text-ra-blue">Segurança</span>.
             </h2>
             

@@ -53,6 +53,35 @@ export default function App() {
     return () => window.removeEventListener('mousemove', moveCursor);
   }, [isMobile]);
 
+  // Cursor scale on hover buttons/links
+  useEffect(() => {
+    if (isMobile) return;
+
+    const handleEnter = () => {
+      if (cursorRef.current) {
+        gsap.to(cursorRef.current, { scale: 2.5, borderColor: '#fff', duration: 0.3 });
+      }
+    };
+    const handleLeave = () => {
+      if (cursorRef.current) {
+        gsap.to(cursorRef.current, { scale: 1, borderColor: 'var(--color-ra-blue)', duration: 0.3 });
+      }
+    };
+
+    const interactives = document.querySelectorAll('a, button');
+    interactives.forEach(el => {
+      el.addEventListener('mouseenter', handleEnter);
+      el.addEventListener('mouseleave', handleLeave);
+    });
+
+    return () => {
+      interactives.forEach(el => {
+        el.removeEventListener('mouseenter', handleEnter);
+        el.removeEventListener('mouseleave', handleLeave);
+      });
+    };
+  }, [isMobile]);
+
   // GSAP Scroll Animation
   useEffect(() => {
     if (isMobile || !containerRef.current) return;
@@ -66,12 +95,12 @@ export default function App() {
         scrollTrigger: {
           trigger: containerRef.current,
           pin: true,
-          scrub: 0.1, // Much more immediate response
+          scrub: 0.5, // Smoother response
           snap: {
             snapTo: 1 / (sections.length - 1),
-            duration: { min: 0.1, max: 0.3 },
-            delay: 0,
-            ease: "power1.inOut"
+            duration: { min: 0.2, max: 0.6 },
+            delay: 0.05,
+            ease: "power2.inOut"
           },
           anticipatePin: 1,
           end: () => `+=${containerRef.current?.scrollWidth || window.innerWidth * 5}`,
@@ -156,7 +185,7 @@ export default function App() {
         <About isMobile={isMobile} />
         <Clients />
         <MoldSection 
-          moldPanelRef={moldPanelRef} 
+          moldPanelRef={moldPanelRef as React.RefObject<HTMLElement>} 
           moldProgress={moldProgress} 
           isMobile={isMobile} 
         />

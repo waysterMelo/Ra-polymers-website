@@ -34,7 +34,7 @@ export const About: React.FC<AboutProps> = ({ isMobile }) => {
             {/* Card: Engenharia de Materiais 4.0 */}
             <div className="glass-panel-hud p-10 md:p-12">
                 <span className="section-tag-hud mb-8">Engenharia de Materiais 4.0</span>
-                <h2 className="text-4xl font-extrabold uppercase tracking-tight mb-8 leading-none text-white">
+                <h2 className="font-display text-4xl font-extrabold uppercase tracking-tight mb-8 leading-none text-white">
                     Nexus Industrial <br/><span className="text-ra-blue">Alta Performance</span>
                 </h2>
                 
@@ -106,8 +106,8 @@ export const About: React.FC<AboutProps> = ({ isMobile }) => {
                         <div className="hidden md:block h-16 w-[1px] bg-white/10 mx-8"></div>
                         <div className="flex flex-col">
                             <div className="flex items-center gap-4">
-                                <span className="text-4xl md:text-6xl font-black text-white tracking-tighter">RA</span>
-                                <span className="text-xl md:text-3xl font-light tracking-[0.3em] text-white/60">POLYMERS</span>
+                                <span className="font-display text-4xl md:text-6xl font-black text-white tracking-tighter">RA</span>
+                                <span className="font-display text-xl md:text-3xl font-light tracking-[0.3em] text-white/60">POLYMERS</span>
                             </div>
                         </div>
                     </div>
@@ -129,7 +129,7 @@ export const About: React.FC<AboutProps> = ({ isMobile }) => {
           <span className="text-[8px] font-bold tracking-[0.8em] uppercase text-white/30 italic">RA POLYMERS &bull; Unidade Estratégica</span>
           <div className="flex gap-10">
               <span className="text-[8px] font-bold uppercase text-white/40 tracking-wider">ISO Certificada</span>
-              <span className="text-[8px] font-bold uppercase text-white/40 tracking-wider">&copy; 2024 Industrial Unit</span>
+              <span className="text-[8px] font-bold uppercase text-white/40 tracking-wider">&copy; 2026 RA Polymers</span>
           </div>
       </footer>
     </section>

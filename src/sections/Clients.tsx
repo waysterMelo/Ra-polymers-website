@@ -23,7 +23,7 @@ export const Clients: React.FC = () => {
 
       <div className="h-full flex flex-col items-center justify-center px-12 relative z-10">
         <div className="text-center mb-24">
-          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4">
+          <h2 className="font-display text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4">
             Rede de <span className="text-ra-blue">Confiança</span>
           </h2>
           <p className="text-white/40 text-sm tracking-[0.2em] uppercase">Ecossistema Industrial de Alta Performance</p>
