@@ -11,20 +11,7 @@
   --font-body: "Inter", ui-sans-serif;
   --font-label: "Inter", ui-sans-serif;
 
-  --color-ra-dark: #111827;
-  --color-ra-grey: #1f2937;
   --color-ra-blue: #0f4a8a;
-  --color-ra-white: #ffffff;
-  --color-ra-glow: rgba(15, 74, 138, 0.4);
-
-  --color-on-secondary-container: #9eb7d8;
-  --color-surface: #10131a;
-  --color-error: #ffb4ab;
-  --color-outline: #8e9196;
-  --color-outline-variant: #44474c;
-  --color-surface-container-low: #191c22;
-  --color-secondary: #afc9ea;
-  /* ... (outras variáveis de cor do tema escuro) */
 }
 
 @layer base {
@@ -72,18 +59,7 @@
   }
 }
 
-/* ESTILOS DO TEMA ANTIGO (A MANTER POR ENQUANTO) */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.glow-text {
-  text-shadow: 0 0 10px var(--color-ra-blue);
-}
-
-/* --- NOVOS ESTILOS - TEMA CLARO --- */
+/* --- TEMA CLARO --- */
 
 .client-card-container {
     perspective: 2000px;

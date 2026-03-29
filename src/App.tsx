@@ -113,33 +113,14 @@ export default function App() {
       if (moldPanelRef.current) {
         ScrollTrigger.create({
           trigger: moldPanelRef.current,
-          start: "left 80%", // Start earlier
-          end: "right 20%",
+          start: "left center",  // Inicia animação quando o lado esquerdo do painel chega ao centro
+          end: "+=500",          // Scroll adicional para atuar em eventuais recálculos
           containerAnimation: scrollTween,
           onEnter: () => {
+            // Animação inicia assim que entra (sem atraso) de forma orgânica e mais lenta
             gsap.to({ val: 0 }, {
               val: 1,
-              duration: 1.8, // Even slower for dramatic appreciation
-              ease: "power2.inOut",
-              onUpdate: function() {
-                setMoldProgress(this.targets()[0].val);
-              }
-            });
-          },
-          onLeave: () => {
-            gsap.to({ val: 1 }, {
-              val: 0,
-              duration: 1.8,
-              ease: "power2.out",
-              onUpdate: function() {
-                setMoldProgress(this.targets()[0].val);
-              }
-            });
-          },
-          onEnterBack: () => {
-            gsap.to({ val: 0 }, {
-              val: 1,
-              duration: 1.8,
+              duration: 5,  // 5 segundos para fechar bem devagar e aproveitar o momento
               ease: "power2.inOut",
               onUpdate: function() {
                 setMoldProgress(this.targets()[0].val);
@@ -147,9 +128,10 @@ export default function App() {
             });
           },
           onLeaveBack: () => {
+            // Voltou para seção anterior - reseta o molde
             gsap.to({ val: 1 }, {
               val: 0,
-              duration: 1.8,
+              duration: 2,
               ease: "power2.out",
               onUpdate: function() {
                 setMoldProgress(this.targets()[0].val);

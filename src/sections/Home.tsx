@@ -23,7 +23,7 @@ export const Home: React.FC = () => {
 
       {/* Central Glassmorphism Card for Perfect Typography Harmony */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-6">
-        <div className="flex flex-col items-center justify-center text-center bg-white/100 backdrop-blur-md border border-white/60 p-12 md:p-24 rounded-3xl shadow-2xl">
+        <div className="flex flex-col items-center justify-center text-center bg-white/40 backdrop-blur-md border border-white/60 p-12 md:p-24 rounded-3xl shadow-2xl">
 
           <div className="mb-8 animate-pulse">
             <div className="w-20 h-20 md:w-24 md:h-24 bg-white shadow-xl rounded-2xl flex items-center justify-center relative overflow-hidden group">

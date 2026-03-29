@@ -39,18 +39,10 @@ export const IndustrialMold: React.FC<IndustrialMoldProps> = ({ progress }) => {
   const glowRef   = useRef<THREE.PointLight>(null);
   const logoRef   = useRef<THREE.Group>(null);
 
-  const easeInOutExpo = (x: number): number => {
-    return x === 0 ? 0
-      : x === 1   ? 1
-      : x < 0.5   ? Math.pow(2, 20 * x - 10) / 2
-      : (2 - Math.pow(2, -20 * x + 10)) / 2;
-  };
-
   useFrame((state) => {
-    const easedProgress = easeInOutExpo(progress);
-
     if (leftHalf.current && rightHalf.current) {
-      const offset = (1 - easedProgress) * 5;
+      // O progresso vem diretamente da animação GSAP
+      const offset = (1 - progress) * 5;
       leftHalf.current.position.x  = -offset;
       rightHalf.current.position.x =  offset;
 
