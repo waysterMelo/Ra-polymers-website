@@ -14,12 +14,11 @@ interface MoldSectionProps {
 
 export const MoldSection: React.FC<MoldSectionProps> = ({ moldPanelRef, moldProgress, isMobile }) => {
   return (
-    <section ref={moldPanelRef} className="panel bg-ra-dark relative overflow-hidden flex flex-col items-center justify-center">
+    <section ref={moldPanelRef} className="panel bg-slate-300 relative overflow-hidden flex flex-col items-center justify-center">
       <PanelHeader number="03" title="Ferramentaria RA Polymers" />
       
       <div className="industrial-bg-grid absolute inset-0 z-0 opacity-20"></div>
-      <div className="vignette-overlay absolute inset-0 z-0"></div>
-
+      
       <div className="absolute inset-0 z-0">
         <Canvas 
           shadows={false} 
@@ -31,13 +30,13 @@ export const MoldSection: React.FC<MoldSectionProps> = ({ moldPanelRef, moldProg
           eventSource={document.getElementById('root') || undefined}
         >
           <PerspectiveCamera makeDefault position={[0, 0, 15]} fov={45} />
-          <ambientLight intensity={0.5} />
-          <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={2} />
+          <ambientLight intensity={1.5} />
+          <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={2.5} />
           <Environment preset="city" />
           <Suspense fallback={null}>
             <IndustrialMold progress={isMobile ? 1 : moldProgress} />
           </Suspense>
-          <ContactShadows position={[0, -4, 0]} opacity={0.4} scale={20} blur={2} far={4.5} />
+          <ContactShadows position={[0, -4, 0]} opacity={0.3} scale={20} blur={2} far={4.5} />
         </Canvas>
       </div>
 
@@ -51,10 +50,10 @@ export const MoldSection: React.FC<MoldSectionProps> = ({ moldPanelRef, moldProg
         >
           <div className="max-w-lg">
             <TechBadge icon={Settings}>Zero Tolerância</TechBadge>
-            <h2 className="font-display text-4xl md:text-6xl font-black mt-6 mb-4 leading-none uppercase tracking-tighter text-white drop-shadow-2xl">
+            <h2 className="font-display text-4xl md:text-6xl font-black mt-6 mb-4 leading-none uppercase tracking-tighter text-slate-900 drop-shadow-lg">
               Domínio <br /> <span className="text-ra-blue">Absoluto</span>
             </h2>
-            <p className="text-white/70 text-lg leading-relaxed font-light backdrop-blur-md bg-ra-dark/40 p-6 rounded-2xl border-l-4 border-ra-blue shadow-2xl">
+            <p className="text-slate-600 text-lg leading-relaxed font-light backdrop-blur-sm bg-white/40 p-6 rounded-2xl border-l-4 border-ra-blue shadow-2xl">
               Da concepção à injeção final. Elimine falhas de terceiros com nossa ferramentaria proprietária focada em maximizar o seu lucro por ciclo.
             </p>
           </div>
@@ -69,10 +68,10 @@ export const MoldSection: React.FC<MoldSectionProps> = ({ moldPanelRef, moldProg
         >
           <div className="max-w-lg">
             <TechBadge icon={Cpu}>Alta Performance</TechBadge>
-            <h2 className="font-display text-4xl md:text-6xl font-black mt-6 mb-4 leading-none uppercase tracking-tighter text-white drop-shadow-2xl">
+            <h2 className="font-display text-4xl md:text-6xl font-black mt-6 mb-4 leading-none uppercase tracking-tighter text-slate-900 drop-shadow-lg">
               Ciclos <br /> <span className="text-ra-blue">Extremos</span>
             </h2>
-            <p className="text-white/70 text-lg leading-relaxed font-light backdrop-blur-md bg-ra-dark/40 p-6 rounded-2xl border-r-4 border-ra-blue inline-block shadow-2xl">
+            <p className="text-slate-600 text-lg leading-relaxed font-light backdrop-blur-sm bg-white/40 p-6 rounded-2xl border-r-4 border-ra-blue inline-block shadow-2xl">
               Otimização térmica e usinagem CNC submilimétrica. Moldes projetados para rodar milhões de ciclos ininterruptos com precisão nanométrica.
             </p>
           </div>

@@ -74,20 +74,20 @@ export const IndustrialMold: React.FC<IndustrialMoldProps> = ({ progress }) => {
 
   // Materiais — removemos clearcoat de alguns para aliviar GPU
   const baseMaterial = (
-    <meshStandardMaterial color="#94a3b8" metalness={0.85} roughness={0.3} />
+    <meshStandardMaterial color="#4B5563" metalness={0.85} roughness={0.3} />
   );
   const blockMaterial = (
-    <meshStandardMaterial color="#cbd5e1" metalness={0.95} roughness={0.2} />
+    <meshStandardMaterial color="#6B7280" metalness={0.95} roughness={0.2} />
   );
   const pinMaterial = (
     <meshStandardMaterial color="#f8fafc" metalness={1.0} roughness={0.05} />
   );
   const darkMetalMaterial = (
-    <meshStandardMaterial color="#334155" metalness={0.9} roughness={0.5} />
+    <meshStandardMaterial color="#1F2937" metalness={0.9} roughness={0.5} />
   );
   const cavityMaterial = (
     <meshStandardMaterial
-      color="#0f172a"
+      color="#111827"
       metalness={0.9}
       roughness={0.3}
       roughnessMap={edmTexture}
@@ -97,7 +97,7 @@ export const IndustrialMold: React.FC<IndustrialMoldProps> = ({ progress }) => {
     />
   );
   const ejectorPlateMaterial = (
-    <meshStandardMaterial color="#64748b" metalness={0.7} roughness={0.4} />
+    <meshStandardMaterial color="#374151" metalness={0.7} roughness={0.4} />
   );
 
   return (
@@ -259,7 +259,7 @@ export const IndustrialMold: React.FC<IndustrialMoldProps> = ({ progress }) => {
       <group ref={logoRef} scale={0}>
         <Text
           fontSize={1.2}
-          color="#0066ff"
+          color="#0f4a8a"
           font="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYMZhrib2Bg-4.ttf"
           anchorX="center"
           anchorY="middle"
@@ -268,7 +268,7 @@ export const IndustrialMold: React.FC<IndustrialMoldProps> = ({ progress }) => {
         </Text>
         <mesh position={[0, 0, -0.1]}>
           <planeGeometry args={[2, 2]} />
-          <meshBasicMaterial color="#0066ff" transparent opacity={0.1} />
+          <meshBasicMaterial color="#0f4a8a" transparent opacity={0.1} />
         </mesh>
       </group>
 
@@ -276,7 +276,7 @@ export const IndustrialMold: React.FC<IndustrialMoldProps> = ({ progress }) => {
       <pointLight
         ref={glowRef}
         position={[0, 0, 1.5]}
-        color="#0066ff"
+        color="#0f4a8a"
         intensity={0}
         distance={10}
       />
