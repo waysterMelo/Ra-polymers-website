@@ -16,12 +16,13 @@ export const Clients: React.FC = () => {
   ];
 
   return (
-    <section className="panel bg-ra-dark/50 relative overflow-hidden">
+    <section className="panel bg-ra-dark relative overflow-hidden flex flex-col items-center justify-center">
       <PanelHeader number="02" title="Nossos Clientes" />
       
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--color-ra-blue)_0%,_transparent_20%)] opacity-5 mix-blend-screen scale-[2] pointer-events-none"></div>
+      <div className="industrial-bg-grid absolute inset-0 z-0"></div>
+      <div className="vignette-overlay absolute inset-0 z-0"></div>
 
-      <div className="h-full flex flex-col items-center justify-center px-12 relative z-10">
+      <div className="h-full flex flex-col items-center justify-center px-12 relative z-10 w-full">
         <div className="text-center mb-24">
           <h2 className="font-display text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4">
             Rede de <span className="text-ra-blue">Confiança</span>

@@ -4,10 +4,13 @@ import { PanelHeader } from '../components/HUD/PanelHeader';
 
 export const Contact: React.FC = () => {
   return (
-    <section className="panel bg-[radial-gradient(circle_at_bottom_right,_var(--color-ra-grey)_0%,_transparent_50%)]">
+    <section className="panel bg-ra-dark relative overflow-hidden flex flex-col items-center justify-center">
       <PanelHeader number="05" title="Confiança Industrial" />
       
-      <div className="h-full flex flex-col items-center justify-center px-6">
+      <div className="industrial-bg-grid absolute inset-0 z-0"></div>
+      <div className="vignette-overlay absolute inset-0 z-0"></div>
+
+      <div className="h-full flex flex-col items-center justify-center px-6 relative z-10 w-full">
         <div className="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
             <div className="inline-flex items-center gap-3 px-4 py-2 bg-ra-blue/10 border border-ra-blue/20 rounded-lg mb-8">

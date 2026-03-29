@@ -113,13 +113,13 @@ export default function App() {
       if (moldPanelRef.current) {
         ScrollTrigger.create({
           trigger: moldPanelRef.current,
-          start: "left 30%", // Start earlier
-          end: "right 70%",
+          start: "left 80%", // Start earlier
+          end: "right 20%",
           containerAnimation: scrollTween,
           onEnter: () => {
             gsap.to({ val: 0 }, {
               val: 1,
-              duration: 3.5, // Even slower for dramatic appreciation
+              duration: 1.8, // Even slower for dramatic appreciation
               ease: "power2.inOut",
               onUpdate: function() {
                 setMoldProgress(this.targets()[0].val);
@@ -129,7 +129,7 @@ export default function App() {
           onLeave: () => {
             gsap.to({ val: 1 }, {
               val: 0,
-              duration: 2,
+              duration: 1.8,
               ease: "power2.out",
               onUpdate: function() {
                 setMoldProgress(this.targets()[0].val);
@@ -139,7 +139,7 @@ export default function App() {
           onEnterBack: () => {
             gsap.to({ val: 0 }, {
               val: 1,
-              duration: 3.5,
+              duration: 1.8,
               ease: "power2.inOut",
               onUpdate: function() {
                 setMoldProgress(this.targets()[0].val);
@@ -149,7 +149,7 @@ export default function App() {
           onLeaveBack: () => {
             gsap.to({ val: 1 }, {
               val: 0,
-              duration: 2,
+              duration: 1.8,
               ease: "power2.out",
               onUpdate: function() {
                 setMoldProgress(this.targets()[0].val);

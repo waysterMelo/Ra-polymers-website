@@ -14,9 +14,12 @@ interface MoldSectionProps {
 
 export const MoldSection: React.FC<MoldSectionProps> = ({ moldPanelRef, moldProgress, isMobile }) => {
   return (
-    <section ref={moldPanelRef} className="panel bg-ra-grey/30 panel-mold">
+    <section ref={moldPanelRef} className="panel bg-ra-dark relative overflow-hidden flex flex-col items-center justify-center">
       <PanelHeader number="03" title="Ferramentaria RA Polymers" />
       
+      <div className="industrial-bg-grid absolute inset-0 z-0 opacity-20"></div>
+      <div className="vignette-overlay absolute inset-0 z-0"></div>
+
       <div className="absolute inset-0 z-0">
         <Canvas 
           shadows={false} 

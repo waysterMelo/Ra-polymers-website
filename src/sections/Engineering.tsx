@@ -9,10 +9,8 @@ export const Engineering: React.FC = () => {
     <section className="panel bg-ra-dark relative overflow-hidden flex flex-col items-center justify-center p-6 lg:p-10">
       <PanelHeader number="04" title="Engenharia & Performance" />
       
-      {/* Background Decorative Elements */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.05)_0%,transparent_70%)]"></div>
-      </div>
+      <div className="industrial-bg-grid absolute inset-0 z-0 opacity-20"></div>
+      <div className="vignette-overlay absolute inset-0 z-0"></div>
 
       <div className="h-full flex items-center justify-center relative z-10 w-full">
         <main className="grid grid-cols-1 lg:grid-cols-3 gap-12 w-full max-w-[1600px] items-center">
