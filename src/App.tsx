@@ -6,6 +6,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { cn } from './utils/cn';
 
 // Sections
@@ -16,10 +17,9 @@ import { MoldSection } from './sections/MoldSection';
 import { Engineering } from './sections/Engineering';
 import { Contact } from './sections/Contact';
 
-// Components
-import { NavArrows } from './components/Navigation/NavArrows';
+import { Navbar } from './components/Navigation/Navbar';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export default function App() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -27,6 +27,7 @@ export default function App() {
   const moldPanelRef = useRef<HTMLElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeSection, setActiveSection] = useState(0);
   const [moldProgress, setMoldProgress] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -107,6 +108,8 @@ export default function App() {
           end: () => `+=${containerRef.current?.scrollWidth || window.innerWidth * 5}`,
           onUpdate: (self) => {
             setScrollProgress(self.progress);
+            const sectionIndex = Math.round(self.progress * (sections.length - 1));
+            setActiveSection(sectionIndex);
           }
         }
       });
@@ -165,25 +168,40 @@ export default function App() {
     return () => ctx.revert();
   }, [isMobile]);
 
+  const onNavigate = (index: number) => {
+    const sections = gsap.utils.toArray('.panel');
+    if (isMobile) {
+      const target = sections[index] as HTMLElement;
+      target?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      const totalScroll = containerRef.current?.scrollWidth || window.innerWidth * sections.length;
+      const scrollPos = (index / (sections.length - 1)) * (totalScroll - window.innerWidth);
+      
+      gsap.to(window, {
+        scrollTo: { y: scrollPos },
+        duration: 1.2,
+        ease: "power3.inOut"
+      });
+    }
+  };
+
+  const onExplore = () => onNavigate(1);
+
   return (
     <div className="relative min-h-screen bg-slate-300">
       <div ref={cursorRef} className="custom-cursor" />
 
-      <div className="fixed top-0 left-0 w-full h-1 z-50 bg-white/5">
+      <Navbar onNavigate={onNavigate} activeSection={activeSection} />
+
+      <div className="fixed top-0 left-0 w-full h-1 z-[110] bg-[#003B73]/10">
         <div 
-          className="h-full bg-ra-blue shadow-[0_0_10px_#0f4a8a]" 
+          className="h-full bg-[#003B73] shadow-[0_0_10px_#003B73]" 
           style={{ width: `${scrollProgress * 100}%` }}
         />
       </div>
 
-      <NavArrows 
-        isMobile={isMobile} 
-        scrollProgress={scrollProgress} 
-        containerRef={containerRef} 
-      />
-
-      <main ref={containerRef} className={cn(isMobile ? "flex flex-col" : "horizontal-scroll-container")}>
-        <Home ref={homePanelRef} />
+      <main ref={containerRef} className={cn(isMobile ? "flex flex-col pt-20" : "horizontal-scroll-container")}>
+        <Home ref={homePanelRef} onExplore={onExplore} />
         <RaPolymersOverview />
         <Clients />
         <MoldSection 

@@ -1,0 +1,306 @@
+import React, { useState } from 'react';
+import { 
+  Factory, 
+  Settings, 
+  ShieldCheck, 
+  Microscope, 
+  Send, 
+  User, 
+  Briefcase, 
+  ChevronRight, 
+  ChevronLeft,
+  Smartphone,
+  CheckCircle2,
+  Layers,
+  Zap,
+  Phone,
+  Target,
+  FlaskConical,
+  Activity,
+  Globe,
+  Cpu,
+  BarChart3,
+  HardHat,
+  Search,
+  Dna
+} from 'lucide-react';
+
+const App = () => {
+  const [activeTab, setActiveTab] = useState('home');
+  const [formStep, setFormStep] = useState(1);
+
+  // Componente de Botão WhatsApp
+  const WhatsAppButton = () => (
+    <a 
+      href="https://wa.me/55313623XXXX" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center gap-2 group"
+    >
+      <span className="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 ease-in-out whitespace-nowrap font-medium px-0 group-hover:px-2">
+        Falar com Especialista
+      </span>
+      <Phone size={24} fill="currentColor" />
+    </a>
+  );
+
+  return (
+    <div className="min-h-screen font-sans text-slate-800 bg-[#F0F4F8] selection:bg-[#003B73] selection:text-white">
+      {/* Navbar Minimalista High-Tech */}
+      <nav className="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => setActiveTab('home')}>
+            <div className="bg-[#003B73] text-white p-2 rounded-lg font-bold text-xl shadow-lg shadow-blue-900/20">RA</div>
+            <span className="font-black tracking-tighter text-[#003B73] text-2xl uppercase">Polymers</span>
+          </div>
+          
+          <div className="hidden md:flex items-center gap-10 font-bold text-[10px] tracking-[0.2em] text-slate-400 uppercase">
+            <button onClick={() => setActiveTab('home')} className={activeTab === 'home' ? 'text-[#003B73] border-b-2 border-[#003B73] pb-1' : 'hover:text-[#003B73] transition-colors'}>Início</button>
+            <button onClick={() => setActiveTab('produtos')} className={activeTab === 'produtos' ? 'text-[#003B73] border-b-2 border-[#003B73] pb-1' : 'hover:text-[#003B73] transition-colors'}>Produtos & Serviços</button>
+            <button onClick={() => setActiveTab('contato')} className={activeTab === 'contato' ? 'text-[#003B73] border-b-2 border-[#003B73] pb-1' : 'hover:text-[#003B73] transition-colors'}>Cotação</button>
+          </div>
+
+          <button onClick={() => setActiveTab('contato')} className="bg-[#003B73] text-white px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:shadow-xl transition-all">
+            Portal do Cliente
+          </button>
+        </div>
+      </nav>
+
+      <main>
+
+
+        {/* TAB: PRODUTOS & SERVIÇOS (REIMAGINADA) */}
+        {activeTab === 'produtos' && (
+          <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
+            
+            {/* Header de Seção */}
+            <section className="max-w-7xl mx-auto px-6 pt-24 pb-16">
+              <div className="grid lg:grid-cols-2 gap-12 items-end">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3 text-[10px] font-bold tracking-[0.3em] text-blue-600 uppercase">
+                    <div className="w-10 h-[2px] bg-blue-600"></div> Portfólio de Soluções
+                  </div>
+                  <h2 className="text-5xl md:text-7xl font-black text-[#003B73] tracking-tighter uppercase leading-[0.9]">Atendimento Especializado</h2>
+                </div>
+                <div className="border-l-4 border-blue-100 pl-8 pb-2">
+                  <p className="text-slate-500 text-lg font-medium leading-relaxed">
+                    A tecnologia e a marca <span className="text-[#003B73] font-black italic">RA-POLYMERS</span> garantem a qualidade dos nossos produtos. Buscamos atender às necessidades específicas de cada segmento com excelência técnica.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* Bento Grid: Segmentos (Layout Criativo) */}
+            <section className="max-w-7xl mx-auto px-6 pb-32">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                
+                {/* Destaque Principal */}
+                <div className="md:col-span-2 md:row-span-2 bg-[#003B73] rounded-[3rem] p-12 text-white relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform duration-700">
+                    <Settings size={200} />
+                  </div>
+                  <div className="relative z-10 h-full flex flex-col justify-between">
+                    <div className="bg-white/10 backdrop-blur w-16 h-16 rounded-2xl flex items-center justify-center mb-8 border border-white/20">
+                      <Factory size={32} />
+                    </div>
+                    <div>
+                      <h3 className="text-3xl font-black uppercase tracking-tight mb-4">Diversidade Industrial</h3>
+                      <p className="text-blue-100 leading-relaxed text-sm">
+                        Desenvolvemos produtos que atendem às exigências e necessidades mais variadas, com foco em alta performance técnica e durabilidade extrema.
+                      </p>
+                      <div className="flex gap-2 mt-8 flex-wrap">
+                        {["Mineração", "Ferrovia", "Automotivo", "Eletro", "Construção"].map(tag => (
+                          <span key={tag} className="px-4 py-1.5 bg-white/10 rounded-full text-[9px] font-bold uppercase tracking-widest">{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card: Metal Mecânico */}
+                <div className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-xl shadow-slate-200/50 hover:-translate-y-2 transition-all">
+                  <div className="text-blue-600 mb-6"><Settings size={32} /></div>
+                  <h4 className="font-black text-[#003B73] uppercase tracking-tight mb-2">Metal Mecânico</h4>
+                  <p className="text-slate-500 text-xs leading-relaxed italic">Componentes de alta resistência para aplicações pesadas.</p>
+                </div>
+
+                {/* Card: Eletro-Eletrônico */}
+                <div className="bg-blue-50 rounded-[2rem] p-8 border border-blue-100 hover:shadow-xl transition-all">
+                  <div className="text-blue-600 mb-6"><Cpu size={32} /></div>
+                  <h4 className="font-black text-[#003B73] uppercase tracking-tight mb-2">Eletro Eletrônico</h4>
+                  <p className="text-slate-500 text-xs leading-relaxed italic">Polímeros isolantes e de precisão nanométrica.</p>
+                </div>
+
+                {/* Card Grande: Terceirização (Texto Integral Integrado) */}
+                <div className="md:col-span-2 bg-white rounded-[3rem] p-10 border border-slate-200 shadow-2xl relative overflow-hidden">
+                  <div className="absolute -right-20 -bottom-20 text-slate-50 opacity-[0.03]"><BarChart3 size={300} /></div>
+                  <div className="flex flex-col lg:flex-row gap-10 relative z-10">
+                    <div className="lg:w-1/3">
+                      <div className="bg-blue-600 text-white w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+                        <Briefcase size={28} />
+                      </div>
+                      <h3 className="text-2xl font-black text-[#003B73] uppercase tracking-tighter leading-none mb-4">Produtividade<br/>As-A-Service</h3>
+                    </div>
+                    <div className="lg:w-2/3 space-y-4">
+                      <p className="text-slate-500 text-sm leading-relaxed">
+                        Para tornar seus clientes mais competitivos, a RA-POLYMERS disponibiliza serviços associados aos seus produtos de forma a melhor atendê-los. A empresa disponibiliza também, serviços de **terceirização de produção**.
+                      </p>
+                      <div className="bg-slate-50 p-6 rounded-2xl border-l-4 border-blue-600">
+                        <p className="text-xs font-bold text-[#003B73] uppercase leading-relaxed tracking-wide">
+                          "Com a terceirização de injeção, os clientes poderão reduzir seus custos e aumentar a sua qualidade e produtividade."
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Seção: Laboratório & Testes (Inovação e Qualidade 100%) */}
+            <section className="bg-[#001D3D] py-32 relative overflow-hidden">
+              {/* Background Tech Elements */}
+              <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
+                <div className="h-full w-full bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:40px_40px]"></div>
+              </div>
+
+              <div className="max-w-7xl mx-auto px-6 relative z-10">
+                <div className="flex flex-col lg:flex-row gap-20">
+                  
+                  {/* Lado Esquerdo: Inovação */}
+                  <div className="flex-1 space-y-8">
+                    <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-400/20 px-4 py-2 rounded-full text-blue-400 text-[9px] font-bold uppercase tracking-widest">
+                      <Zap size={14} /> Inovação Sistêmica
+                    </div>
+                    <h2 className="text-5xl md:text-6xl font-black text-white tracking-tighter uppercase leading-[0.9]">Teste de <br/><span className="text-blue-500 italic underline decoration-blue-500 underline-offset-8 decoration-4">Qualidade</span></h2>
+                    <p className="text-blue-100/60 text-lg font-light leading-relaxed">
+                      Para a RA-POLYMERS, a inovação e o desenvolvimento tecnológico são as bases de todas as atividades. Contamos com grandes pesquisadores totalmente dedicados à inovação e recursos tecnológicos que nos permitem antecipar cenários e aprimorar nossos produtos e processos.
+                    </p>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-white/5 backdrop-blur-md p-6 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors">
+                        <Dna size={24} className="text-blue-400 mb-4" />
+                        <h5 className="text-white font-bold uppercase text-xs tracking-tight mb-2">Simulações de Desempenho</h5>
+                        <p className="text-blue-100/40 text-[10px] uppercase font-medium">Salas credenciadas para avaliação em tempo real.</p>
+                      </div>
+                      <div className="bg-white/5 backdrop-blur-md p-6 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors">
+                        <Activity size={24} className="text-blue-400 mb-4" />
+                        <h5 className="text-white font-bold uppercase text-xs tracking-tight mb-2">Ensaios Mecânicos</h5>
+                        <p className="text-blue-100/40 text-[10px] uppercase font-medium">Impacto, elasticidade e resistência extrema.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Lado Direito: O Rigor do 100% (Glass Card Central) */}
+                  <div className="flex-1">
+                    <div className="bg-gradient-to-br from-blue-600/20 to-blue-900/40 backdrop-blur-3xl p-12 rounded-[4rem] border border-white/10 shadow-2xl space-y-10 relative group">
+                      <div className="absolute top-0 right-0 -m-10 w-40 h-40 bg-blue-500 blur-[100px] opacity-20"></div>
+                      
+                      <div className="flex items-center gap-4">
+                        <div className="bg-blue-600 text-white p-4 rounded-2xl shadow-xl shadow-blue-500/20">
+                          <Microscope size={32} />
+                        </div>
+                        <div className="h-[2px] flex-1 bg-gradient-to-r from-blue-600 to-transparent"></div>
+                      </div>
+
+                      <h3 className="text-3xl font-black text-white uppercase tracking-tighter leading-none">
+                        Eliminamos a <br/><span className="text-blue-400">Amostragem.</span>
+                      </h3>
+
+                      <p className="text-blue-100/80 text-sm leading-relaxed">
+                        A busca pela satisfação das necessidades dos nossos clientes faz com que a RA-POLYMERS realize o **controle de qualidade em 100% dos produtos** produzidos pela empresa, eliminando o processo por amostragem, que as vezes é insuficiente.
+                      </p>
+
+                      <div className="space-y-6">
+                        <div className="flex items-center gap-4">
+                          <div className="w-10 h-10 rounded-full border-2 border-blue-500 flex items-center justify-center text-blue-400 font-black text-xs italic">100%</div>
+                          <span className="text-[10px] font-bold text-blue-200 uppercase tracking-[0.2em]">Inspeção Integrada à Produção</span>
+                        </div>
+                        <div className="flex items-center gap-4">
+                          <div className="w-10 h-10 rounded-full border-2 border-slate-700 flex items-center justify-center text-slate-400">
+                             <Search size={18} />
+                          </div>
+                          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Acompanhamento Constante de Resultados</span>
+                        </div>
+                      </div>
+
+                      <div className="pt-6 border-t border-white/5">
+                        <p className="text-[9px] font-bold text-blue-500 uppercase tracking-[0.3em] italic">
+                          "Precisão nanométrica integrada à linha de produção automatizada."
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+    
+          </div>
+        )}
+
+      </main>
+
+      {/* Footer Industrial High-Tech */}
+      <footer className="bg-white border-t border-slate-100 py-24 px-6 overflow-hidden relative">
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-200 to-transparent"></div>
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-16 mb-20">
+            <div className="col-span-2 space-y-8">
+              <div className="flex items-center gap-2">
+                <div className="bg-[#003B73] text-white p-2 rounded font-black text-sm">RA</div>
+                <span className="font-black tracking-tighter text-[#003B73] text-xl uppercase italic">Polymers Tech</span>
+              </div>
+              <p className="text-slate-400 text-[10px] font-bold uppercase tracking-[0.3em] leading-relaxed max-w-md italic">
+                Operando no nexo entre a ciência de materiais avançados e manufatura algorítmica para a indústria de alta performance global.
+              </p>
+              <div className="flex gap-6 text-slate-300">
+                <Globe size={20} className="hover:text-blue-600 transition-colors cursor-pointer" />
+                <Settings size={20} className="hover:text-blue-600 transition-colors cursor-pointer" />
+                <Smartphone size={20} className="hover:text-blue-600 transition-colors cursor-pointer" />
+              </div>
+            </div>
+            <div>
+              <h5 className="text-[10px] font-black uppercase tracking-[0.2em] text-[#003B73] mb-8">Navegação Técnica</h5>
+              <ul className="space-y-4 text-[9px] font-bold text-slate-400 uppercase tracking-widest">
+                <li className="hover:text-blue-600 cursor-pointer" onClick={() => setActiveTab('home')}>Home / Dashboard</li>
+                <li className="hover:text-blue-600 cursor-pointer" onClick={() => setActiveTab('produtos')}>Soluções & Lab</li>
+                <li className="hover:text-blue-600 cursor-pointer" onClick={() => setActiveTab('contato')}>Portal NDA</li>
+              </ul>
+            </div>
+            <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100 relative group overflow-hidden">
+               <div className="absolute -right-5 -bottom-5 text-slate-200 opacity-20 group-hover:scale-110 transition-transform"><ShieldCheck size={100} /></div>
+               <h5 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-900 mb-4 relative z-10">Conformidade</h5>
+               <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest leading-loose relative z-10">ISO 9001:2015<br/>AUDITORIA 100%<br/>LAB CREDENCIADO</p>
+            </div>
+          </div>
+          <div className="pt-10 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6 opacity-40 grayscale">
+            <span className="text-[8px] font-black uppercase tracking-[0.4em] text-[#003B73]">© 2026 RA POLYMERS TECHNOLOGY. ADVANCED MATERIALS ENGINEERING.</span>
+            <div className="flex gap-10 text-[8px] font-black uppercase tracking-widest">
+              <span>Security Protocols</span>
+              <span>Technical Terms</span>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {/* Botão de WhatsApp Flutuante */}
+      <WhatsAppButton />
+
+      {/* Global CSS for Animations */}
+      <style>{`
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        .animate-in {
+          animation: fade-in 0.5s ease-out forwards;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        ::-webkit-scrollbar-thumb { background: #003B73; border-radius: 10px; }
+      `}</style>
+    </div>
+  );
+};
+
+export default App;
