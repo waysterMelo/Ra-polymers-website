@@ -11,8 +11,8 @@ export const Engineering: React.FC = () => {
       
       <div className="absolute inset-0 bg-pattern -z-10" style={{ backgroundImage: 'radial-gradient(#cbd5e1 1.2px, transparent 1.2px)', backgroundSize: '30px 30px', opacity: 0.2 }}></div>
 
-      <div className="h-full flex items-center justify-center relative z-10 w-full">
-        <main className="grid grid-cols-1 lg:grid-cols-3 gap-12 w-full max-w-[1600px] items-center">
+      <div className="flex-1 flex flex-col justify-center items-center relative z-10 w-full mt-4 lg:mt-8">
+        <main className="grid grid-cols-1 lg:grid-cols-3 gap-12 w-full max-w-[1600px] items-center mb-16 lg:mb-0">
           
           {/* Column 1: ROMI Unit A */}
           <div className="flex flex-col items-center justify-center group">
@@ -32,15 +32,15 @@ export const Engineering: React.FC = () => {
           </div>
 
           {/* Column 2: Technical Narrative (Center) */}
-          <div className="flex flex-col gap-8 text-center items-center">
+          <div className="flex flex-col gap-6 lg:gap-8 text-center items-center">
             <TechBadge icon={Activity}>Superior Manufacturing</TechBadge>
             
-            <h2 className="font-display text-4xl md:text-6xl font-black uppercase tracking-tighter text-slate-900">
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-slate-900">
               Poder de <br /> <span className="text-ra-blue">Execução</span>
             </h2>
             
-            <div className="bg-white/60 backdrop-blur-lg p-8 md:p-10 border-t-2 border-t-ra-blue max-w-lg rounded-2xl shadow-xl">
-              <p className="text-slate-600 text-lg leading-relaxed font-light mb-6">
+            <div className="bg-white/60 backdrop-blur-lg p-6 lg:p-10 border-t-2 border-t-ra-blue max-w-lg rounded-2xl shadow-xl">
+              <p className="text-slate-600 text-base lg:text-lg leading-relaxed font-light mb-6">
                 Nossa infraestrutura é composta por centros de usinagem ROMI de última geração, garantindo que a complexidade do design nunca comprometa a integridade da peça.
               </p>
               <p className="text-slate-500 text-sm leading-relaxed font-light">
@@ -83,11 +83,11 @@ export const Engineering: React.FC = () => {
       </div>
 
       {/* Telemetry Footer */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-8 opacity-40 font-mono text-[8px] uppercase tracking-[0.4em] pointer-events-none text-slate-500">
+      <div className="relative mt-8 md:mt-12 flex flex-wrap items-center justify-center gap-4 lg:gap-8 opacity-40 font-mono text-[8px] uppercase tracking-[0.4em] pointer-events-none text-slate-500">
         <span>Cycle_Time: Optimal</span>
-        <div className="w-1 h-1 bg-slate-400 rounded-full"></div>
+        <div className="hidden md:block w-1 h-1 bg-slate-400 rounded-full"></div>
         <span>Thermal_Stability: Nominal</span>
-        <div className="w-1 h-1 bg-slate-400 rounded-full"></div>
+        <div className="hidden md:block w-1 h-1 bg-slate-400 rounded-full"></div>
         <span>Load_Factor: 85%</span>
       </div>
     </section>

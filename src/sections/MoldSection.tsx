@@ -7,14 +7,13 @@ import { TechBadge } from '../components/HUD/TechBadge';
 import { IndustrialMold } from '../components/Three/IndustrialMold';
 
 interface MoldSectionProps {
-  moldPanelRef: React.RefObject<HTMLElement>;
   moldProgress: number;
   isMobile: boolean;
 }
 
-export const MoldSection: React.FC<MoldSectionProps> = ({ moldPanelRef, moldProgress, isMobile }) => {
+export const MoldSection: React.FC<MoldSectionProps> = ({ moldProgress, isMobile }) => {
   return (
-    <section ref={moldPanelRef} className="panel bg-slate-300 relative overflow-hidden flex flex-col items-center justify-center">
+    <section className="panel bg-slate-300 relative overflow-hidden flex flex-col items-center justify-center">
       <PanelHeader number="03" title="Ferramentaria RA Polymers" />
       
       <div className="industrial-bg-grid absolute inset-0 z-0 opacity-20"></div>
@@ -40,9 +39,9 @@ export const MoldSection: React.FC<MoldSectionProps> = ({ moldPanelRef, moldProg
         </Canvas>
       </div>
 
-      <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+      <div className="relative z-10 pointer-events-none w-full flex flex-col md:absolute md:inset-0 md:-translate-y-0 justify-between md:justify-center gap-12 pt-8 pb-16 px-6 md:p-0">
         <div 
-          className="absolute top-1/2 left-0 -translate-y-1/2 flex flex-col justify-center px-12 md:px-24 transition-all duration-[600ms] ease-out w-full md:w-1/2 h-full"
+          className="flex flex-col justify-center md:absolute md:top-1/2 md:left-0 md:-translate-y-1/2 md:px-24 transition-all duration-[600ms] ease-out w-full md:w-1/2"
           style={{ 
             opacity: moldProgress > 0.15 ? 1 : 0,
             transform: `translateX(${moldProgress > 0.15 ? '0%' : '-50%'})`
@@ -50,17 +49,17 @@ export const MoldSection: React.FC<MoldSectionProps> = ({ moldPanelRef, moldProg
         >
           <div className="max-w-lg">
             <TechBadge icon={Settings}>Zero Tolerância</TechBadge>
-            <h2 className="font-display text-4xl md:text-6xl font-black mt-6 mb-4 leading-none uppercase tracking-tighter text-slate-900 drop-shadow-lg">
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black mt-4 lg:mt-6 mb-4 leading-none uppercase tracking-tighter text-slate-900 drop-shadow-lg">
               Domínio <br /> <span className="text-ra-blue">Absoluto</span>
             </h2>
-            <p className="text-slate-600 text-lg leading-relaxed font-light backdrop-blur-sm bg-white/40 p-6 rounded-2xl border-l-4 border-ra-blue shadow-2xl">
+            <p className="text-slate-600 text-base lg:text-lg leading-relaxed font-light backdrop-blur-sm bg-white/40 p-6 rounded-2xl border-l-4 border-ra-blue shadow-2xl">
               Da concepção à injeção final. Elimine falhas de terceiros com nossa ferramentaria proprietária focada em maximizar o seu lucro por ciclo.
             </p>
           </div>
         </div>
 
         <div 
-          className="absolute top-1/2 right-0 -translate-y-1/2 flex flex-col justify-center items-end px-12 md:px-24 transition-all duration-[600ms] ease-out w-full md:w-1/2 h-full text-right"
+          className="flex flex-col justify-center items-start md:items-end md:absolute md:top-1/2 md:right-0 md:-translate-y-1/2 md:px-24 transition-all duration-[600ms] ease-out w-full md:w-1/2 md:text-right"
           style={{ 
             opacity: moldProgress > 0.15 ? 1 : 0,
             transform: `translateX(${moldProgress > 0.15 ? '0%' : '-50%'})`
@@ -68,10 +67,10 @@ export const MoldSection: React.FC<MoldSectionProps> = ({ moldPanelRef, moldProg
         >
           <div className="max-w-lg">
             <TechBadge icon={Cpu}>Alta Performance</TechBadge>
-            <h2 className="font-display text-4xl md:text-6xl font-black mt-6 mb-4 leading-none uppercase tracking-tighter text-slate-900 drop-shadow-lg">
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black mt-4 lg:mt-6 mb-4 leading-none uppercase tracking-tighter text-slate-900 drop-shadow-lg">
               Ciclos <br /> <span className="text-ra-blue">Extremos</span>
             </h2>
-            <p className="text-slate-600 text-lg leading-relaxed font-light backdrop-blur-sm bg-white/40 p-6 rounded-2xl border-r-4 border-ra-blue inline-block shadow-2xl">
+            <p className="text-slate-600 text-base lg:text-lg leading-relaxed font-light backdrop-blur-sm bg-white/40 p-6 rounded-2xl border-l-4 md:border-l-0 md:border-r-4 border-ra-blue inline-block shadow-2xl">
               Otimização térmica e usinagem CNC submilimétrica. Moldes projetados para rodar milhões de ciclos ininterruptos com precisão nanométrica.
             </p>
           </div>

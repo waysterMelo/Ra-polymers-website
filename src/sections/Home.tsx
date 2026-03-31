@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { ChevronRight, Phone } from 'lucide-react';
 import bgHome from '../assets/home.webp';
 
@@ -6,9 +6,9 @@ interface HomeProps {
   onExplore?: () => void;
 }
 
-export const Home = forwardRef<HTMLElement, HomeProps>(({ onExplore }, ref) => {
+export const Home: React.FC<HomeProps> = ({ onExplore }) => {
   return (
-    <section ref={ref} className="panel relative overflow-hidden flex items-center justify-center bg-[#003B73]">
+    <section className="panel relative overflow-hidden flex flex-col justify-between bg-[#003B73]">
 
       {/* Background Image with Cinematic Overlay */}
       <div className="absolute inset-0 z-0 opacity-40">
@@ -26,10 +26,10 @@ export const Home = forwardRef<HTMLElement, HomeProps>(({ onExplore }, ref) => {
       </div>
 
       {/* Central Glassmorphism Card — Style from txt.txt */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 home-fade-up home-content">
-        <div className="bg-white/10 backdrop-blur-md p-12 md:p-20 rounded-[2rem] border border-white/20 text-center shadow-2xl">
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 md:px-6 home-fade-up home-content my-auto pt-10 pb-16">
+        <div className="bg-white/10 backdrop-blur-md p-8 md:p-16 rounded-[2rem] border border-white/20 text-center shadow-2xl">
 
-          <h1 className="text-white text-5xl md:text-8xl font-black mb-6 tracking-tighter uppercase leading-tight">
+          <h1 className="text-white text-4xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tighter uppercase leading-tight">
             Engenharia de <br/><span className="text-blue-400">Alta Precisão</span>
           </h1>
 
@@ -39,7 +39,7 @@ export const Home = forwardRef<HTMLElement, HomeProps>(({ onExplore }, ref) => {
 
           <button 
             onClick={onExplore}
-            className="bg-white text-[#003B73] px-10 py-5 rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-transform flex items-center gap-2 mx-auto shadow-xl group cursor-pointer"
+            className="bg-white text-[#003B73] px-6 py-4 md:px-10 md:py-5 rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-transform flex items-center gap-2 mx-auto shadow-xl group cursor-pointer text-xs md:text-sm"
           >
             Conheça nossas Soluções 
             <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
@@ -48,15 +48,15 @@ export const Home = forwardRef<HTMLElement, HomeProps>(({ onExplore }, ref) => {
         </div>
       </div>
 
-      {/* Footer Industrial — Positioned at bottom of the section */}
-      <footer className="absolute bottom-0 left-0 w-full bg-white/5 backdrop-blur-sm border-t border-white/10 py-8 px-12 z-20">
+      {/* Footer Industrial — Flex relative rather than absolute */}
+      <footer className="relative w-full bg-slate-900/30 backdrop-blur-sm border-t border-white/10 py-6 px-6 md:px-12 z-20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-2 grayscale opacity-60">
             <div className="bg-white text-[#003B73] px-2 py-1 rounded font-bold text-sm">RA</div>
             <span className="font-black tracking-tighter text-white text-lg uppercase">Polymers Tech</span>
           </div>
-          <div className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] text-center">
-            © 2026 RA Polymers Tech. Todos os direitos reservados. Engenharia de Polímeros de Alta Performance.
+          <div className="text-[9px] md:text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] text-center">
+            © 2026 RA Polymers. Todos os direitos reservados.
           </div>
           <div className="flex gap-8">
             <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest hover:text-white cursor-pointer transition-colors">Privacidade</span>
@@ -80,7 +80,6 @@ export const Home = forwardRef<HTMLElement, HomeProps>(({ onExplore }, ref) => {
 
     </section>
   );
-});
+};
 
-Home.displayName = 'Home';
 

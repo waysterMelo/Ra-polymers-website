@@ -18,13 +18,13 @@ const RaPolymersOverview: React.FC = () => {
       <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
         
         {/* Header de Seção */}
-        <div className="max-w-7xl mx-auto px-6 pt-24 pb-16">
-          <div className="grid lg:grid-cols-2 gap-12 items-end">
-            <div className="space-y-6">
+        <div className="max-w-7xl mx-auto px-6 pt-16 pb-12 lg:pt-24 lg:pb-16">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-end">
+            <div className="space-y-4 lg:space-y-6">
               <div className="flex items-center gap-3 text-[10px] font-bold tracking-[0.3em] text-blue-600 uppercase">
                 <div className="w-10 h-[2px] bg-blue-600"></div> Portfólio de Soluções
               </div>
-              <h2 className="text-5xl md:text-7xl font-black text-[#003B73] tracking-tighter uppercase leading-[0.9]">Atendimento Especializado</h2>
+              <h2 className="text-4xl md:text-6xl font-black text-[#003B73] tracking-tighter uppercase leading-[0.9]">Atendimento Especializado</h2>
             </div>
             <div className="border-l-4 border-blue-100 pl-8 pb-2">
               <p className="text-slate-500 text-lg font-medium leading-relaxed">
@@ -35,13 +35,13 @@ const RaPolymersOverview: React.FC = () => {
         </div>
 
         {/* Bento Grid: Segmentos */}
-        <div className="max-w-7xl mx-auto px-6 pb-32">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="max-w-7xl mx-auto px-6 pb-16 lg:pb-32">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             
             {/* Destaque Principal */}
-            <div className="md:col-span-2 md:row-span-2 bg-[#003B73] rounded-[3rem] p-12 text-white relative overflow-hidden group">
+            <div className="md:col-span-2 md:row-span-2 bg-[#003B73] rounded-[2rem] lg:rounded-[3rem] p-8 lg:p-12 text-white relative overflow-hidden group">
               <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform duration-700">
-                <Settings size={200} />
+                <Settings size={150} />
               </div>
               <div className="relative z-10 h-full flex flex-col justify-between">
                 <div className="bg-white/10 backdrop-blur w-16 h-16 rounded-2xl flex items-center justify-center mb-8 border border-white/20">
@@ -76,9 +76,9 @@ const RaPolymersOverview: React.FC = () => {
             </div>
 
             {/* Card Grande: Terceirização */}
-            <div className="md:col-span-2 bg-white rounded-[3rem] p-10 border border-slate-200 shadow-2xl relative overflow-hidden">
-              <div className="absolute -right-20 -bottom-20 text-slate-50 opacity-[0.03]"><BarChart3 size={300} /></div>
-              <div className="flex flex-col lg:flex-row gap-10 relative z-10">
+            <div className="md:col-span-2 bg-white rounded-[2rem] lg:rounded-[3rem] p-8 lg:p-10 border border-slate-200 shadow-2xl relative overflow-hidden">
+              <div className="absolute -right-20 -bottom-20 text-slate-50 opacity-[0.03]"><BarChart3 size={200} /></div>
+              <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 relative z-10">
                 <div className="lg:w-1/3">
                   <div className="bg-blue-600 text-white w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
                     <Briefcase size={28} />
@@ -101,25 +101,25 @@ const RaPolymersOverview: React.FC = () => {
         </div>
 
         {/* Seção: Laboratório & Testes */}
-        <div className="bg-[#001D3D] py-32 relative overflow-hidden">
+        <div className="bg-[#001D3D] py-16 md:py-24 lg:py-32 relative overflow-hidden">
           <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
             <div className="h-full w-full bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:40px_40px]"></div>
           </div>
 
           <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <div className="flex flex-col lg:flex-row gap-20">
+            <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
               
               {/* Lado Esquerdo: Inovação */}
-              <div className="flex-1 space-y-8">
+              <div className="flex-1 space-y-6 lg:space-y-8">
                 <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-400/20 px-4 py-2 rounded-full text-blue-400 text-[9px] font-bold uppercase tracking-widest">
                   <Zap size={14} /> Inovação Sistêmica
                 </div>
-                <h2 className="text-5xl md:text-6xl font-black text-white tracking-tighter uppercase leading-[0.9]">Teste de <br/><span className="text-blue-500 italic underline decoration-blue-500 underline-offset-8 decoration-4">Qualidade</span></h2>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter uppercase leading-[0.9]">Teste de <br/><span className="text-blue-500 italic underline decoration-blue-500 underline-offset-8 decoration-4">Qualidade</span></h2>
                 <p className="text-blue-100/60 text-lg font-light leading-relaxed">
                   Para a RA-POLYMERS, a inovação e o desenvolvimento tecnológico são as bases de todas as atividades. Contamos com grandes pesquisadores totalmente dedicados à inovação e recursos tecnológicos que nos permitem antecipar cenários e aprimorar nossos produtos e processos.
                 </p>
                 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="bg-white/5 backdrop-blur-md p-6 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors">
                     <Dna size={24} className="text-blue-400 mb-4" />
                     <h5 className="text-white font-bold uppercase text-xs tracking-tight mb-2">Simulações de Desempenho</h5>
@@ -135,8 +135,8 @@ const RaPolymersOverview: React.FC = () => {
 
               {/* Lado Direito: O Rigor do 100% */}
               <div className="flex-1">
-                <div className="bg-gradient-to-br from-blue-600/20 to-blue-900/40 backdrop-blur-3xl p-12 rounded-[4rem] border border-white/10 shadow-2xl space-y-10 relative group">
-                  <div className="absolute top-0 right-0 -m-10 w-40 h-40 bg-blue-500 blur-[100px] opacity-20"></div>
+                <div className="bg-gradient-to-br from-blue-600/20 to-blue-900/40 backdrop-blur-3xl p-8 lg:p-12 rounded-[2rem] lg:rounded-[4rem] border border-white/10 shadow-2xl space-y-8 lg:space-y-10 relative group">
+                  <div className="absolute top-0 right-0 -m-10 w-40 h-40 bg-blue-500 blur-[100px] opacity-20 hidden md:block"></div>
                   
                   <div className="flex items-center gap-4">
                     <div className="bg-blue-600 text-white p-4 rounded-2xl shadow-xl shadow-blue-500/20">

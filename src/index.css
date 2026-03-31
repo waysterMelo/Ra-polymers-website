@@ -25,38 +25,21 @@
   * {
     @apply selection:bg-ra-blue selection:text-white;
   }
-}
 
-.horizontal-scroll-container {
-  display: flex;
-  flex-wrap: nowrap;
-  width: auto;
-  height: 100vh;
-}
-
-@media (max-width: 768px) {
-  .horizontal-scroll-container {
-    display: block;
-    width: 100%;
-    height: auto;
+  /* Smooth scroll for anchor navigation */
+  html {
+    scroll-behavior: smooth;
   }
 }
 
+/* Vertical sections layout */
 .panel {
-  width: 100vw;
-  height: 100vh;
-  flex-shrink: 0;
-  will-change: transform;
+  width: 100%;
+  min-height: 100vh;
   position: relative;
   overflow: hidden;
-}
-
-@media (max-width: 768px) {
-  .panel {
-    width: 100vw;
-    height: auto; /* Ajuste para mobile */
-    min-height: 100vh;
-  }
+  display: flex;
+  flex-direction: column;
 }
 
 /* ===========================
@@ -236,8 +219,7 @@
     }
 }
 
-/* Home content — GPU-accelerated for GSAP transition */
+/* Home content — GPU-accelerated */
 .home-content {
     will-change: transform, opacity, filter;
 }
-

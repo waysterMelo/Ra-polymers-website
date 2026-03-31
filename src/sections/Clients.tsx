@@ -108,18 +108,18 @@ export const Clients: React.FC = () => {
         </div>
 
         {/* Stats bar */}
-        <div className="mt-12 flex items-center justify-center">
-          <div className="inline-flex items-center gap-8 px-8 py-4 rounded-2xl bg-white border border-slate-200 shadow-lg shadow-slate-200/50">
+        <div className="mt-12 flex items-center justify-center auto-rows-max">
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 px-6 lg:px-8 py-4 rounded-2xl bg-white border border-slate-200 shadow-lg shadow-slate-200/50">
             <div className="text-center">
               <p className="text-2xl font-black text-slate-900">10+</p>
               <p className="text-[8px] font-bold tracking-[0.2em] uppercase text-slate-400">Clientes</p>
             </div>
-            <div className="h-8 w-px bg-slate-200"></div>
+            <div className="hidden md:block h-8 w-px bg-slate-200"></div>
             <div className="text-center">
               <p className="text-2xl font-black text-slate-900">98%</p>
               <p className="text-[8px] font-bold tracking-[0.2em] uppercase text-slate-400">Retenção</p>
             </div>
-            <div className="h-8 w-px bg-slate-200"></div>
+            <div className="hidden md:block h-8 w-px bg-slate-200"></div>
             <div className="text-center">
               <p className="text-2xl font-black text-slate-900">5+</p>
               <p className="text-[8px] font-bold tracking-[0.2em] uppercase text-slate-400">Anos</p>
